@@ -2,12 +2,14 @@ import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 //Styles
 import './App.css';
+//Components
 import Home from "./containers/Home";
+import Header from "./components/Header";
 
 function App() {
   return (
     <div className="SiteWrapper">
-    {/* <Header /> */}
+    <Header />
     <Router>
      <Switch>
        <Route path="/">
