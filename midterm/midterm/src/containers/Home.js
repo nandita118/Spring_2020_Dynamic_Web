@@ -38,9 +38,9 @@ function Home () {
     const [borough, setBorough] = useState(null); // uses useHistory to get from url
     const [northmta, setNorthMTA] = useState({}); //data for north mta train
     const [southmta, setSouthMTA] = useState({}); //data for south mta train
-    const [stationname, setStationName] = useState({}); //sets station name using API
-    const [longitude, setLong] = useState({});
-    const [latitude, setLat]= useState({});
+    const [stationname, setStationName] = useState(null); //sets station name using API
+    const [longitude, setLong] = useState(null);
+    const [latitude, setLat]= useState(null);
     
 
     const [idn, setIDN] = useState({});
@@ -181,25 +181,21 @@ function Home () {
         }
     }, [southmta]);
 
-            console.log(longitude)
-            console.log(latitude)
-            console.log(stationname)
-
     return(
         <div className="SiteWrapper">
             {/* <Header /> */}
             <div className="Home">
-                <h1>in {borough}</h1>
+                <h1>{stationname} in {borough}</h1>
 
                     <div className = "Station_Data">
                         <div className="Location">
-                            <p>Longitude: {longitude}&#176;</p>
-                            <p>Latitude: {latitude}&#176;</p>
+                            <p>Longitude: <strong>{longitude}&#176;</strong> Latitude: <strong>{latitude}&#176;</strong></p>
                         </div>
 
                         <div className="Usage">
-                            <p>Riders from March 14, 2020 to March 20, 2020: <strong>{fareusage}</strong></p>
+                            <p>Riders from March 14, 2020 to March 20, 2020: <strong>{+parseInt(fareusage['FF'])}</strong></p>
                         </div>
+                        
 
                     </div>
                 

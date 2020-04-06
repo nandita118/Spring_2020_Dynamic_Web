@@ -3,7 +3,7 @@ import React from "react";
 function Header(){
     return(
         <header className="Header">
-            <h2>COVID-TRANSIT DATA</h2>
+            <h2>NYC Transit Data</h2>
             <div className="BoroughsNav">
                 <a href="/?borough=Bronx">Bronx</a>
                 <a href="/?borough=Manhattan">Manhattan</a>
