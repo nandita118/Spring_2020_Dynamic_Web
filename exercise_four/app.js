@@ -18,12 +18,15 @@ const firebaseConfig = {
     appId: "1:816095527446:web:d6f0e38ca527ad90ac6b37"
   };
 
+//Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
 //Create base route
-app.get('/', (req, res) => res.send("Exercise Four")); 
+app.get('/', (req, res) => res.send("Data for Exercise Four")); 
 
 //Set up app so that it runs when this file is run
 app.listen(port, () =>
-    console.log(`Example app listening at http://localhost: ${port} `)
+    console.log(`Example app listening at http://localhost:${port} `)
     );
 
 //make midterms private -- people scan for API keys
