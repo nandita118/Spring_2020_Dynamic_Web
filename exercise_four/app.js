@@ -6,7 +6,7 @@ const app = express();
 const port = process.env.PORT || 4000; //number variable
 
 //Require FireBase
-const firebase = require("firebase/app");
+const firebase = require("firebase");
 //Get config obj so we can communicate w firebase
 const firebaseConfig = {
     apiKey: "AIzaSyCQcnWDZCnTXkVmjm66hxFYUKtdf53r4vw", //this is incredibly insecure, but just for learning, lets do
@@ -21,8 +21,27 @@ const firebaseConfig = {
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
+//Initialize Firestore Database:
+const db = firebase.firestore();
+
+//Create empty array
+const blogpostsArray = [];
+//Get Blog Posts
+const blogposts = db
+  .collection('blogposts')
+  .get()
+  .then((querySnapshot) => {
+    querySnapshot.forEach((doc) => {
+      console.log(`${doc.id} => ${doc.data()}`);
+      blogpostsArray.push(doc.data()); //push each single obj into array
+    });
+  })
+  .catch(function(error) {
+    console.log("Error", error);
+  });
+
 //Create base route
-app.get('/', (req, res) => res.send("Data for Exercise Four")); 
+app.get("/", (req, res) => res.send(blogpostsArray)); //sending array (json)
 
 //Set up app so that it runs when this file is run
 app.listen(port, () =>
