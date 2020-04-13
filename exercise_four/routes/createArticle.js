@@ -20,9 +20,10 @@ router.get("/", (req, res) => res.send(form));
 // /create/submit
 router.get("/submit", (req, res) => {
     const queryParams = req.query;
+    const idFromTitle = queryParams.title.replace(/\s+/g, "-").toLowerCase();
     
     blogposts
-        .doc()
+        .doc(idFromTitle)
         .set(queryParams)
         .then(function (doc) {
             res.send(
