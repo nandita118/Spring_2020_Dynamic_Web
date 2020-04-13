@@ -21,27 +21,15 @@ const firebaseConfig = {
 //Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 
-//Initialize Firestore Database:
-const db = firebase.firestore();
+//Import Routes
+const indexRoute = require("./routes/index.js");
+const postRoute = require("./routes/posts.js");
+const createRoute = require("./routes/createArticle.js");
 
-//Create empty array
-const blogpostsArray = [];
-//Get Blog Posts
-const blogposts = db
-  .collection('blogposts')
-  .get()
-  .then((querySnapshot) => {
-    querySnapshot.forEach((doc) => {
-      console.log(`${doc.id} => ${doc.data()}`);
-      blogpostsArray.push(doc.data()); //push each single obj into array
-    });
-  })
-  .catch(function(error) {
-    console.log("Error", error);
-  });
-
-//Create base route
-app.get("/", (req, res) => res.send(blogpostsArray)); //sending array (json)
+//Create Routes
+app.use("/", indexRoute);
+app.use("/post", postRoute);
+app.use("/create", createRoute);
 
 //Set up app so that it runs when this file is run
 app.listen(port, () =>
