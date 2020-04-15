@@ -20,6 +20,7 @@ router.get("/", (req, res) => res.send(form));
 // /create/submit
 router.get("/submit", (req, res) => {
     const queryParams = req.query;
+    //regex to normalize id to title, currently not functioning:
     // const idFromTitle = queryParams.title.replace(/\s+/g, "-").toLowerCase();
     
     blogposts
